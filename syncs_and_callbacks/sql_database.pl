@@ -3,9 +3,38 @@ exit;
 
 #
 # Code to be used with pSSOd to synchronize AD with a SQL Database.
-# 
+#
 # ZeWaren / Erwan Martin <public@fzwte.net>, http://zewaren.net
 # License: MIT
+
+#------------------------------------------------------------------------------
+# Create yourself a database with these queries if you need an example
+#------------------------------------------------------------------------------
+=mysql
+CREATE DATABASE IF NOT EXISTS some_database;
+USE some_database;
+
+CREATE TABLE IF NOT EXISTS groups (
+  name varchar(50) NOT NULL,
+  description varchar(250) DEFAULT NULL,
+  synced tinyint(4) DEFAULT NULL,
+  PRIMARY KEY (name)
+);
+
+CREATE TABLE IF NOT EXISTS groups_users (
+  group_name varchar(50) NOT NULL DEFAULT '',
+  user_name varchar(50) NOT NULL DEFAULT '',
+  PRIMARY KEY (group_name,user_name)
+);
+
+CREATE TABLE IF NOT EXISTS users (
+  username varchar(50) NOT NULL,
+  name varchar(250) DEFAULT NULL,
+  password varchar(50) NOT NULL,
+  synced tinyint(4) NOT NULL,
+  PRIMARY KEY (username)
+);
+=cut
 
 #------------------------------------------------------------------------------
 # Copy this part into perlsync.pl
