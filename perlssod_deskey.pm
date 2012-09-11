@@ -2,10 +2,10 @@
 
 # Provides functions to extract the binary version of the keytable
 # of the DES algorithm, used by pSSOD.
-# 
+#
 # ZeWaren / Erwan Martin <public@fzwte.net>, http://zewaren.net
 # License: MIT
-# 
+#
 # Most of this code comes from Crypt::TripleDES (PPDES.pm), created by:
 # Vipul Ved Prakash, mail@vipul.net
 # Eric Young, eay@psych.psy.uq.oz.au

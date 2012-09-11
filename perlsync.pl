@@ -2,7 +2,7 @@
 
 #
 # Fetch users and groups from an Active Directory server.
-# 
+#
 # ZeWaren / Erwan Martin <public@fzwte.net>, http://zewaren.net
 # License: MIT
 

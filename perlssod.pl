@@ -1,9 +1,9 @@
 #!/usr/local/bin/perl -w
 package SSOD;
 
-# Provides a SSO Daemon to enable password synchronization between 
+# Provides a SSO Daemon to enable password synchronization between
 # Microsoft's Active Directory and virtually anything.
-# 
+#
 # ZeWaren / Erwan Martin <public@fzwte.net>, http://zewaren.net
 # License: MIT
 
@@ -21,7 +21,7 @@ if (!SSOD_DEBUG_MODE) {
 else {
     use IO::Socket::INET;
 }
-use Crypt::Random qw( makerandom_octet ); 
+use Crypt::Random qw( makerandom_octet );
 use Digest::SHA1  qw(sha1 sha1_hex sha1_base64);
 use Crypt::ECB;
 use Crypt::DES;
@@ -86,7 +86,7 @@ sub htonl_ssod {
 sub make_hash {
     my ($r1, $r2, $secret) = @_;
     my ($sha1, $bytes);
-    
+
     $sha1 = Digest::SHA1->new;
     $sha1->add_bits($r1, 8*8);
     $sha1->add($secret);
@@ -173,7 +173,7 @@ sub handle_request {
     binmode $client_socket;
 
     $logger->debug("Sending random string.");
-    my $r1 = makerandom_octet ( Size => 8*8 ); 
+    my $r1 = makerandom_octet ( Size => 8*8 );
     print $client_socket pack("A8", $r1);
 
     $logger->debug("Reading packet.");
@@ -213,7 +213,7 @@ sub handle_request {
     my @DESTable2 = des_get_key_table(substr($key, 8, 16));
     my @DESTable3 = des_get_key_table(substr($key, 16, 24));
     my @DES3Table;
-    
+
     push @DES3Table, htonl_ssod($_) foreach (@DESTable1);
     push @DES3Table, htonl_ssod($_) foreach (@DESTable2);
     push @DES3Table, htonl_ssod($_) foreach (@DESTable3);
@@ -280,7 +280,7 @@ else {
     );
     Log::Log4perl::init(\$log_conf);
     my $logger = Log::Log4perl->get_logger();
-    
+
     $logger->info("Starting pSSOd.");
 
     my $socket = new IO::Socket::INET (
