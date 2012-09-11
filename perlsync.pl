@@ -19,6 +19,10 @@ my $ldapsrc = Net::LDAP->new(LDAP_HOST) or die "$@";
 my $mesg = $ldapsrc->bind(LDAP_USER, password=>LDAP_PASSWORD, version => 3);
 my $base = LDAP_BASE;
 
+# You can test your LDAP connection with these queries
+# ldapsearch -x -LLL -h 192.168.42.10 -D 'aduser@grandopen.zwm.fr' -w 'abcd1234___' -b "DC=grandopen,DC=zwm,DC=fr" "(objectClass=group)" sAMAccountName member description
+# ldapsearch -x -LLL -h 192.168.42.10 -D 'aduser@grandopen.zwm.fr' -w 'abcd1234___' -b "DC=grandopen,DC=zwm,DC=fr" "(objectClass=user)" sAMAccountName name
+
 #
 #Fetch groups from AD
 #
@@ -80,3 +84,6 @@ foreach my $agroup ( keys %$groups ) {
 #
 #Do something with the users and groups here.
 #
+use Data::Dumper;
+print Dumper($users);
+print Dumper($groups_to_send);
