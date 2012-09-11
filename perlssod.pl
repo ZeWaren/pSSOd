@@ -21,7 +21,6 @@ if (!SSOD_DEBUG_MODE) {
 else {
     use IO::Socket::INET;
 }
-use Crypt::Random qw( makerandom_octet );
 use Digest::SHA1  qw(sha1 sha1_hex sha1_base64);
 use Crypt::ECB;
 use Crypt::DES;
@@ -173,7 +172,9 @@ sub handle_request {
     binmode $client_socket;
 
     $logger->debug("Sending random string.");
-    my $r1 = makerandom_octet ( Size => 8*8 );
+    my @r1 = ();
+    push @r1, int(rand(255)) for (0..7);
+    my $r1 = pack('C*', @r1);
     print $client_socket pack("A8", $r1);
 
     $logger->debug("Reading packet.");

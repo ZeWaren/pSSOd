@@ -32,7 +32,9 @@ foreach $a ($fh->fetchUsers()) {
 foreach my $auser ( keys %$users ) {
   if (!exists $old_users->{$users->{$auser}->{'accountname'}}) {
     #new user: create it with a random password
-    my $new_password = encode_base64(makerandom_octet( Size => 8*8 )); 
+    my @random_array = ();
+    push @random_array, int(rand(255)) for (0..7);
+    my $new_password = encode_base64(pack('C*', @random_array));
     $fh->htpasswd($users->{$auser}->{'accountname'}, $new_password);
   }
   $fh->writeInfo($users->{$auser}->{'accountname'}, $users->{$auser}->{'name'});
