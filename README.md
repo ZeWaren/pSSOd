@@ -61,6 +61,16 @@ Install the following ports:
 + `databases/p5-DBI` and the relevant drivers (`databases/p5-DBD-mysql`, `databases/p5-DBD-Pg`, `databases/p5-DBD-SQLite`, etc.) (if you want to store the information into a SQL database)
 + `security/p5-Apache-Htpasswd` and `www/p5-Apache-Htgroup` (if you want to store the information into htpasswd and htgroup files)
 
+#### CentOS
+Thank Marcos Carraro for the list:
+
++ yum install perl-LDAP 
++ yum install perl-Digest-SHA1.x86_64 
++ yum install perl-Crypt-ECB 
++ yum install perl-Crypt-DES 
++ yum install perl-MIME-Base64 
++ yum install perl-Log-Log4perl 
++ yum install perl-Data-Dumper 
 
 Non technical information
 -------------------------
